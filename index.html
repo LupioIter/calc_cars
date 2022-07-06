@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Car price</title>
+</head>
+
+<body>
+    <main>
+        <h1>Calculate your car price!</h1>
+        <div class="calc">
+            <div id="car_brand">
+                <label for="brands">Choose a brand:</label>
+                <select name="brands" id="brands">
+                    <option value="73000">Audi</option>
+                    <option value="90000">Bentley</option>
+                    <option value="65000">BMW</option>
+                    <option value="105000">Cadillac</option>
+                    <option value="60000">Chevrolet</option>
+                    <option value="40000">Ford</option>
+                    <option value="93000">Mercedes</option>
+                    <option value="230000">Porsche</option>
+                    <option value="81000">Tesla</option>
+                    <option value="50000">Toyota</option>
+                    <option value="43000">Volvo</option>
+                </select>
+            </div>
+
+            <form id="car_age">
+                <p>Age of your car:</p>
+                <input type="radio" id="less3" name="age" value="45000">
+                <label for="less3">Less than 3 years</label><br>
+                <input type="radio" id="three_five" name="age" value="30000">
+                <label for="age">3-5 years</label><br>
+                <input type="radio" id="five_seven" name="age" value="5000">
+                <label for="age">5-7 years</label><br>
+                <input type="radio" id="more7" name="age" value="0">
+                <label for="age">More than 7 years</label>
+            </form>
+
+            <form id="add">
+                <p>Additional:</p>
+                <input type="checkbox" id="spare" value="1200">
+                <label for="spare">A spare tire</label><br>
+                <input type="checkbox" id="headset" value="7000">
+                <label for="headset">A headset</label><br>
+                <input type="checkbox" id="curtains" value="700">
+                <label for="curtains">Curtains</label><br>
+                <input type="checkbox" id="roof_rack" value="15000">
+                <label for="roof_rack">A roof rack</label>
+            </form>
+
+            <button id="calculate" onclick=calcMe()>Calculate!</button>
+
+            <div id="message"></div>
+        </div>
+    </main>
+
+    <script>
+        function calcMe() {
+            //reset previous
+            message.innerHTML = "";
+
+            //get all numbers into array
+            let numbers_arr = Array.from(document.querySelectorAll('input:checked, #brands option:checked'), ({ value }) => value);
+            console.log(numbers_arr);
+
+            //sum all numbers
+            let result = 0;
+            for (let number of numbers_arr) {
+                result += Number(number);
+            }
+            console.log(result);
+
+            //show result
+            message.innerHTML = "Your price is about $" + result + ".";
+        }
+
+    </script>
+</body>
+
+</html>
